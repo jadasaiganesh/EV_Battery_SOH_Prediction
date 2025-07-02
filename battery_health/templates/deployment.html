@@ -1,0 +1,2279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMART DIAGNOSTICS: HYBRID DEEP LEARNING FOR PREDICTIVE EV HEALTH MONITORING</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+
+    <style>
+    .full-page {
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: start;
+}
+
+/* ✅ Basic Solid Navbar */
+.navbar {
+    background-color: #28a745 !important; /* Green Theme */
+    padding: 12px 20px;
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+}
+
+/* ✅ Sticky Navbar Effect */
+.navbar.fixed-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1030;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15); /* Light shadow when scrolling */
+}
+
+/* ✅ Navbar Brand */
+.navbar-brand {
+    color: #fff !important;
+    font-size: 22px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+    color: #c3e6cb !important; /* Lighter green on hover */
+}
+
+/* ✅ Navbar Items */
+.navbar-nav {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+}
+
+/* ✅ Green-Themed Nav Links */
+.nav-link {
+    color: #fff !important;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* 🔥 Smooth & Modern Hover Effect (Only Affects Hovered Item) */
+.nav-link:hover {
+    background-color: #1e7e34; /* Richer dark green */
+    color: #f8f9fa !important; /* Soft off-white text */
+    border-radius: 6px; /* Slight rounding for a smoother feel */
+    transition: all 0.3s ease-in-out; /* Ensures smooth effect */
+}
+
+
+
+/* ✅ Navbar Toggler (Hamburger Menu) */
+.navbar-toggler {
+    border: none;
+    padding: 8px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.navbar-toggler:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ✅ Mobile Optimization */
+@media (max-width: 991px) {
+    .navbar-nav {
+        text-align: center;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-item {
+        margin: 8px 0;
+    }
+
+    .navbar-collapse {
+        padding-top: 10px;
+        background-color: #218838; /* Slightly darker green */
+        border-radius: 5px;
+        padding: 15px;
+    }
+
+    /* ✅ Close Navbar on Click */
+    .nav-link {
+        font-size: 16px;
+        width: 100%;
+        display: block;
+    }
+
+    .nav-link:hover {
+        background-color: #1e7e34 !important; /* Darker green for mobile */
+        color: #fff !important;
+    }
+}
+
+/* ✅ Active Link Styling */
+.nav-item.active .nav-link {
+    color: #fff !important;
+    font-weight: bold;
+    border-bottom: 2px solid #fff; /* Underline effect */
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+
+
+/* Style for the Developers Section */
+/* Style for the Developers Section */
+#developers {
+    background-color: #f9f9f9; /* Light grey background */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+    margin-top: 20px;
+}
+
+/* Style for the Heading Row */
+.heading-row {
+    text-align: center; /* Center the heading */
+    margin-bottom: 30px; /* Add space below the heading */
+}
+
+/* Style for the Heading */
+#developers .section-heading {
+    font-size: 30px; /* Larger font size for the heading */
+    color: #2c6b38; /* Dark green color */
+    line-height: 1.5; /* Adjust line height */
+}
+
+/* Row for Developer Info Divs */
+.info-row {
+    display: flex; /* Flexbox to display divs in a row */
+    justify-content: space-between; /* Distribute space evenly between items */
+    gap: 20px; /* Add space between the divs */
+    flex-wrap: wrap; /* Allow wrapping if the screen size is small */
+}
+
+/* Style for each individual info-div */
+.info-div {
+    background-color: #ffffff; /* White background for each div */
+    border-radius: 8px; /* Rounded corners for each div */
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    transition: all 0.3s ease; /* Smooth transition */
+    width: 22%; /* Each div takes up 22% of the container width */
+    min-width: 200px; /* Ensure the divs don't shrink too small on smaller screens */
+    text-align: center; /* Center text and images inside each div */
+}
+
+/* Style for images in the Developer Info */
+.developer-img {
+    width: 100px; /* Reduced image size */
+    height: 100px; /* Fixed height */
+    border-radius: 50%; /* Make the image round */
+    object-fit: cover; /* Ensure the image is cropped to fit the circular shape */
+    margin-bottom: 10px; /* Space between image and text */
+}
+
+/* Style for paragraphs inside each info-div */
+.info-div p {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Hover effect for paragraphs inside info-divs */
+.info-div p:hover {
+    color: #1c7430; /* Dark Green color on hover */
+    font-weight: bold; /* Bold text on hover */
+    text-decoration: underline; /* Underline on hover */
+    font-size: 16px;
+
+}
+
+/* Hover effect for each info-div */
+.info-div:hover {
+    transform: translateY(-5px); /* Lift the div slightly on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Darker shadow on hover */
+}
+
+
+
+.card-body h3 {
+    text-align: center; /* Center-align text */
+    font-size: 20px; /* Adjust size as needed */
+    font-weight: bold; /* Make it bold */
+    margin: 10px 0; /* Add spacing around */
+}
+
+
+
+
+
+
+
+        /* Custom CSS for scrolling text */
+        .scrolling-text {
+    white-space: nowrap;
+    overflow: hidden;
+    box-sizing: border-box;
+    background-color: #f7f7f7;
+    padding: 10px 0 0 0 ;
+    margin-top: 20px;
+}
+
+.scrolling-text p {
+    display: inline-block;
+    padding-left: 100%;
+    animation: scroll-left 30s linear infinite; /* Slow speed */
+    font-size: 24px; /* Increase text size */
+}
+
+@keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+}
+
+
+        .container-div {
+            margin-top: 20px;
+            
+        }
+
+        /* Styling for cards in the "Revolutionizing Battery Health" Section */
+        .card-body {
+    background-color: #f0f0f0;
+    text-align: justify;
+    padding: 20px;
+    border-radius: 8px;
+    height: 400px; /* Default collapsed height */
+    max-height: 400px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+/* Expanded State (No Transition, Instantly Applies) */
+.card-body.expanded {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 80vw; /* Adjust width for better readability */
+    height: 80vh; /* Adjust height to avoid too much screen occupation */
+    max-height: 80vh;
+    transform: translate(-50%, -50%); /* Center smoothly */
+    z-index: 9999; /* Ensure it appears above everything */
+    background-color: rgba(255, 255, 255, 1); /* Solid background */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align content at the top */
+    align-items: flex-start;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+    border-radius: 12px; /* Keep smooth rounded corners */
+    padding: 40px; /* Adjust padding */
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+/* Optional Gradient Fade Effect for Hidden Content */
+.card-body::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50px; /* Height of the gradient */
+    background: linear-gradient(to bottom, transparent, #f0f0f0);
+    display: block;
+    pointer-events: none;
+}
+
+.card-body.expanded::after {
+    opacity: 0; /* Hide gradient when expanded */
+}
+
+
+
+
+
+        .card {
+            border: 2px solid #ddd;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        /* Styling for the Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f1f1f1;
+            position: static;
+            width: 100%;
+            bottom: 0;
+        }
+
+        /* Visual separation for sections */
+        .section-title {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .card-body h4 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .card-body p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .card-body a {
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* General Padding and Spacing Adjustments */
+        .container-div {
+            padding: 30px;
+            width: auto;
+        }
+        .card-body {
+    cursor: pointer;
+}
+#imageModal, #imageModal1 ,#imageModal2 {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#modalImage, #modalImage1,#modalImage3 {
+    max-width: 100%; /* Adjust the size here */
+    max-height: 80%; /* Adjust the size here */
+    
+    padding-top: 2%;
+    display: flex;
+}
+
+.section-title {
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .section-title:hover {
+        transform: scale(1.05); /* Slight zoom effect on hover */
+    }
+    </style>
+    <script>
+        window.onscroll = function() {
+    var navbar = document.querySelector('.navbar');
+    if (window.scrollY > 0) {
+        navbar.classList.add('fixed-top');  // Fix navbar to the top
+    } else {
+        navbar.classList.remove('fixed-top');  // Remove fixed navbar when at the top
+    }
+};
+    </script>
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    let navbarToggler = document.querySelector(".navbar-toggler");
+    let navbarCollapse = document.querySelector(".navbar-collapse");
+    let navLinks = document.querySelectorAll(".nav-link");
+
+    // Close menu when a nav item is clicked (on mobile)
+    navLinks.forEach(link => {
+        link.addEventListener("click", function () {
+            if (window.innerWidth < 992) {
+                navbarToggler.click(); // Simulates clicking the menu button
+            }
+        });
+    });
+});
+
+</script>
+</head>
+<body>
+
+
+    <div id="main-container">
+        <div class="curtain" id="curtain">
+            <img id="curtain-image" src="{% static 'images/ev.webp' %}" alt="Let's Go Image">
+        </div>
+    </div>
+  
+    
+    <style>
+    /* Ensuring full screen effect */
+    #main-container {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        overflow: hidden;
+    }
+    
+/* Curtain covers full screen initially */
+.curtain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    overflow: hidden;
+    transition: transform 1.5s ease-in-out, opacity 1s ease-in-out;
+}
+
+
+
+/* Image styling for smoother motion */
+.curtain img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.5s ease-in-out, opacity 1s ease-in-out;
+}
+
+/* Slide-up effect for the entire curtain */
+.slide-up {
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+/* Smoothly shrink and fade out the image while moving */
+.slide-up img {
+    transform: scale(0.95) translateY(-20px); /* Gentle shrink & lift effect */
+    opacity: 0;
+}
+
+   
+    </style>
+    
+    <script>
+       window.onload = function () {
+    setTimeout(() => {
+        let curtain = document.getElementById('curtain');
+        let curtainImage = document.getElementById('curtain-image');
+
+        // Curtain animation
+        curtain.classList.add('slide-up');
+        curtainImage.style.transform = "scale(0.95) translateY(-20px)";
+        curtainImage.style.opacity = "0";
+
+        // After curtain fully disappears
+        setTimeout(() => {
+            curtain.style.display = 'none';
+            document.body.classList.add('curtain-hidden');
+
+            // Animate navbar items (same delay as words)
+            const navLinks = document.querySelectorAll('.nav-item.animated-bounce');
+            navLinks.forEach((link, index) => {
+                setTimeout(() => {
+                    link.classList.add('bounce-start');
+                }, 1300 + index * 300); // Set the same delay as words (starting after 1.3s)
+            });
+
+            // Animate header title words (same delay as navbar)
+            const animatedWords = document.querySelectorAll('.animated-word');
+            animatedWords.forEach((word, index) => {
+                setTimeout(() => {
+                    word.classList.add('animate-word');
+                }, 1300 + index * 300); // Adjust to the same delay sequence for consistency
+            });
+
+        }, 1500); // After curtain transition ends
+    }, 1000); // Slight initial delay
+};
+
+        </script>
+        
+    
+
+
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item animated-bounce"><a class="nav-link" href="#title">Title</a></li>
+            <li class="nav-item animated-bounce"><a class="nav-link" href="#developer">Project Developer's</a></li>
+            <li class="nav-item animated-bounce"><a class="nav-link" href="#overview">Overview</a></li>
+            <li class="nav-item animated-bounce"><a class="nav-link" href="#workflow">Workflow</a></li>
+            <li class="nav-item animated-bounce"><a class="nav-link" href="#Algorithms">Algorithms</a></li>
+            <li class="nav-item animated-bounce"><a class="nav-link" href="#Benefit">Benefits</a></li>
+            <li class="nav-item animated-bounce"><a class="nav-link" href="#tt">Deployment</a></li>
+            <li class="nav-item animated-bounce"><a class="nav-link" href="#contact">Contact</a></li>
+
+            {% if user.is_authenticated %}
+                <li class="nav-item animated-bounce">
+                    <a class="nav-link" href="{% url 'logout' %}">Welcome, {{ user.username }} (Logout)</a>
+                </li>
+            {% else %}
+                <li class="nav-item animated-bounce">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav><style>
+    /* Make navbar stick to top */
+    .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease, padding 0.3s ease;
+    background-color: #ffffff;
+    padding: 0.8rem 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+body {
+    padding-top: 0; /* Set padding to 0 for top space */
+    margin-top: 0; /* Remove top margin */
+}
+
+    
+    /* Optional: shrink navbar on scroll */
+    .navbar.scrolled {
+    background-color: #ffffff;
+    padding: 0.5rem 1rem; /* slightly smaller, but smooth */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}@keyframes bounce {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  40% {
+    transform: translateY(-15px);
+    opacity: 1;
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+  80% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animated-bounce {
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.bounce-start {
+  animation: bounce 1s ease forwards;
+}
+
+
+
+    
+
+    </style>
+  
+    <p  id="title"></p>
+        <style>
+            body {
+                padding-top: 80px; /* match navbar height */
+            }
+           </style>
+ <!-- Scrolling Container -->
+<div id="scroll-container" style="position: relative; width: 100%; height: 50px; overflow: hidden; background-color: #ffffff; margin: 0; padding: 0; display: flex; align-items: center;">
+
+    <!-- Left Fade -->
+    <div style="position: absolute; width: 60px; height: 100%; left: 0; top: 0; background: linear-gradient(to right, #fff, transparent); z-index: 1;"></div>
+
+    <!-- Right Fade -->
+    <div style="position: absolute; width: 60px; height: 100%; right: 0; top: 0; background: linear-gradient(to left, #fff, transparent); z-index: 1;"></div>
+
+    <!-- Text Track -->
+    <div class="marquee-track" style="display: flex; white-space: nowrap; animation: scroll-left 20s linear infinite; font-size: 18px; color: #2e7d32; font-weight: 600;">
+        <span style="padding-right: 100px;">
+            This project is undertaken with the primary goal of education, under the esteemed guidance of Dr. M. Sirish kumar Sir, whose invaluable mentorship has greatly contributed to its development.
+        </span>
+        <span style="padding-right: 100px;">
+            This project is undertaken with the primary goal of education, under the esteemed guidance of Dr. M. Sirish kumar Sir, whose invaluable mentorship has greatly contributed to its development.
+        </span>
+    </div>
+</div>
+
+<!-- Smooth Scrolling Keyframe -->
+<style>
+    @keyframes scroll-left {
+        0% {
+            transform: translateX(0%);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+    #scroll-container {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    overflow: hidden;
+    background-color: #ffffff;
+    margin: 0; /* Remove extra margin */
+    padding: 0; /* Remove extra padding */
+    display: flex;
+    align-items: center;
+}
+
+</style>
+
+
+
+         
+         
+      
+      
+
+    <!-- Title Bar -->
+    <div class="jumbotron text-center"  style="padding-top: 0px;">
+        <!-- Google Font -->
+
+<div class="title-container" style="display: flex; align-items: center;  background-color: #ffffff; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 5px;">
+    <!-- Logo -->
+    <img src="{% static 'images/logo4.png' %}" alt="Logo" class="logo" style="max-width: 450px; margin-right: 10px; margin-left: 20px; height: 250px;">
+    
+    <!-- Title -->
+     <div style="width: 80%">
+        
+     <div>
+
+     
+        <h1 class="title animated-title hidden-until-loaded">
+           
+            <span class="animated-word">EV</span>
+            <span class="animated-word">HEALTH</span>
+            <span class="animated-word">MONITORING</span>
+        </h1>
+        <script>
+            window.addEventListener("load", function () {
+                const title = document.querySelector(".hidden-until-loaded");
+                title.classList.add("show-title");
+        
+                // Trigger word animations after 300ms
+                setTimeout(() => {
+                    const words = document.querySelectorAll(".animated-word");
+                    words.forEach(word => {
+                        word.classList.add("animate-word");
+                    });
+                }, 300); 
+            });
+        </script>
+        
+        
+        
+        <style>
+          .hidden-until-loaded {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* After curtain is gone, this is added */
+.show-title {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.animated-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 40px;
+    font-weight: 800;
+    color: #28a745;
+    text-transform: uppercase;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.animated-word {
+    opacity: 0;
+    transform: translateY(20px);
+    position: relative;
+}
+.animated-word {
+    position: relative;
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+}
+/* For navbar bounce animation */
+.nav-item.animated-bounce {
+    transform: translateY(100%);
+    opacity: 0;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.bounce-start {
+    animation: bounce 1s ease forwards;
+}
+
+/* Heading animations */
+.animated-word {
+    opacity: 0;
+    transform: translateY(20px);
+    position: relative;
+}
+
+.animate-word {
+    animation: slideIn 0.6s ease forwards;
+}
+
+/* Staggered delay for words */
+.animated-word:nth-child(1) { animation-delay: 1.3s; }
+.animated-word:nth-child(2) { animation-delay: 1.6s; }
+.animated-word:nth-child(3) { animation-delay: 1.9s; }
+
+/* Underline animation for words */
+.animated-word::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    height: 4px;
+    width: 0%;
+    background: #28a745;
+    animation: underline 1s ease forwards;
+    animation-delay: inherit;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes underline {
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  40% {
+    transform: translateY(-15px);
+    opacity: 1;
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+  80% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+            </style>
+            <script>
+                window.onload = function () {
+                    setTimeout(() => {
+                        const curtain = document.getElementById('curtain');
+                        const curtainImage = document.getElementById('curtain-image');
+                
+                        // Animate curtain out
+                        curtain.classList.add('slide-up');
+                        curtainImage.style.transform = "scale(0.95) translateY(-20px)";
+                        curtainImage.style.opacity = "0";
+                
+                        // After curtain disappears
+                        setTimeout(() => {
+                            curtain.style.display = 'none';
+                            document.body.classList.add('curtain-hidden');
+                
+                            // Animate navbar links (bounce)
+                            const navLinks = document.querySelectorAll('.nav-item.animated-bounce');
+                            navLinks.forEach((link, index) => {
+                                setTimeout(() => {
+                                    link.classList.add('bounce-start');
+                                }, index * 150);
+                            });
+                
+                            // Animate header title words
+                            const animatedWords = document.querySelectorAll('.animated-word');
+                            animatedWords.forEach(word => {
+                                word.classList.add('animate-word');
+                            });
+                
+                        }, 1500);
+                    }, 1000);
+                };
+                </script>
+                
+        
+</div>
+<div>
+
+
+    <div class="animated-scene w-100" style="position: relative; height: 180px; background: transparent; overflow: hidden; " >
+    
+        <!-- Trees -->
+        <div class="trees" style="
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            margin-left: 15px;
+            width: 200%;
+            height: 120px;
+            background: url('{% static "images/trees.jpg" %}') repeat-x;
+            background-size: contain;
+            animation: moveTrees 30s linear infinite;
+            z-index: 1;">
+        </div>
+        
+        <!-- EV Scooter -->
+       <!-- Animated Scooter 1 -->
+<img src="{% static 'images/ev.png' %}" alt="EV Scooter" class="scooter scooter1" style="height: 90px;">
+
+<!-- Animated Scooter 2 -->
+<img src="{% static 'images/ev.png' %}" alt="EV Scooter" class="scooter scooter2" style="height: 90px;">
+
+<!-- Animated Scooter 3 -->
+<img src="{% static 'images/ev.png' %}" alt="EV Scooter" class="scooter scooter3" style="height: 90px;">
+<img src="{% static 'images/ev.png' %}" alt="EV Scooter" class="scooter scooter4" style="height: 90px;">
+
+    </div>
+    
+    
+    </div>
+    </div>
+        <style>
+        .scooter {
+    position: absolute;
+    bottom: -10px;
+    left: -200px;
+    z-index: 2;
+    animation: moveScooter 10s linear infinite;
+}
+
+.scooter {
+    position: absolute;
+    bottom: -10px;
+    left: -200px;
+    z-index: 2;
+    animation: moveScooter 12s linear infinite;
+}
+
+.scooter1 {
+    animation-delay: 0s;
+}
+
+.scooter2 {
+    animation-delay: 3s;
+}
+
+.scooter3 {
+    animation-delay: 6s;
+}
+
+.scooter4 {
+    animation-delay: 9s;
+}
+
+@keyframes moveScooter {
+    0% { left: -200px; }
+    100% { left: 100%; }
+}
+
+
+@keyframes moveTrees {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+        </style>
+    
+</div>
+<br><br>
+<div style="margin: 10px 30px;">
+    <p style="font-size: 15px; line-height: 1.8; text-align: justify; margin-bottom: 20px;">
+        The <strong>State of Health (SOH)</strong> of electric vehicle batteries is a vital metric that determines their safety, performance, and lifespan. Accurate SOH diagnostics not only ensure operational reliability but also help reduce maintenance costs and extend battery life—making it an essential component of modern EV systems.
+    </p>
+
+    <p style="font-size: 15px; line-height: 1.8; text-align: justify;">
+        Our solution harnesses the power of an <strong>ensemble deep learning framework</strong> that integrates <strong>CNN</strong>, <strong>LSTM</strong>, <strong>RNN</strong>, and <strong>Light Gradient Boosting Machine (LGBM)</strong> to deliver highly precise SOH predictions. This hybrid approach significantly outperforms traditional machine learning techniques, offering a more robust and intelligent system for battery health monitoring and predictive maintenance.
+    </p>
+</div>
+ </div>
+    <style>
+    @keyframes zoomInOut {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); } /* Slightly less zoom for subtle effect */
+    }
+    
+    /* Logo animation */
+    .logo {
+        opacity: 0;
+        transform: scale(0.96);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    
+    body.curtain-hidden .logo {
+        opacity: 1;
+        animation: zoomInOut 4s ease-in-out infinite; /* Slower zoom effect */
+    }
+    @keyframes slideUp {
+    0% { transform: translateY(12px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+  
+
+    </style>
+    
+    
+    
+  
+
+
+
+    <br id="developer"><br >
+    <!-- Developers Info -->
+    <div id="developers" class="container container-div" >
+        <!-- Heading for Developerds Section -->
+        <div class="heading-row" >
+            <h2 class="section-heading" >Project Development Team</h2>
+        </div>
+    
+        <!-- Row for Developer Info Divs -->
+        <div class="info-row">
+            <!-- Div 1: Developers Info -->
+            <div class="info-div"   >
+                <img class="developer-img" src="{% static 'images/iswarya_new.jpeg' %}" alt="Sunkara Iswarya">
+                <p>Sunkara Iswarya (iswaryasunkara24@gmail.com)</p>
+            </div>
+    
+            <!-- Div 2: Developer Info -->
+            <div class="info-div">
+                <img class="developer-img" src="{% static 'images/ganesh2.jpg' %}" alt="J Sai Ganesh">
+                
+                <p>J Sai Ganesh (jadasaireddy@gmail.com)</p>
+            </div>
+    
+            <!-- Div 3: Developer Info -->
+            <div class="info-div" style="width: 300px;">
+                <img class="developer-img" src="{% static 'images/yaswanth_sai.jpeg' %}"alt="Yaswanth Sai Boligarla">
+                
+                <p>Yaswanth Sai Boligarla (boligarlayashwanthsai@gmail.com)</p>
+            </div>
+    
+            <!-- Div 4: Developer Info -->
+            <div class="info-div">
+                <img class="developer-img" src="{% static 'images/sneha1.jpg' %}" alt="Darla Sneha Latha">
+                
+                <p>Darla Sneha Latha (darlasnehalatha2@gmail.com)</p>
+            </div>
+        </div>
+    </div>
+    <style>
+       /* Fade-in effect */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Slide-in effects */
+@keyframes slideInLeft {
+    0% { transform: translateX(-50px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+    0% { transform: translateX(50px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInBottom {
+    0% { transform: translateY(30px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Developer images staggered */
+.developer-img {
+    opacity: 0;
+    animation: slideInLeft 1s ease-out forwards;
+}
+
+.info-div p {
+    opacity: 0;
+    animation: slideInBottom 1s ease-out forwards;
+}
+
+/* Staggered timing */
+.info-div:nth-child(1) .developer-img { animation-delay: 0.2s; }
+.info-div:nth-child(1) p { animation-delay: 0.4s; }
+
+.info-div:nth-child(2) .developer-img { animation-delay: 0.6s; }
+.info-div:nth-child(2) p { animation-delay: 0.8s; }
+
+.info-div:nth-child(3) .developer-img { animation-delay: 1s; }
+.info-div:nth-child(3) p { animation-delay: 1.2s; }
+
+.info-div:nth-child(4) .developer-img { animation-delay: 1.4s; }
+.info-div:nth-child(4) p { animation-delay: 1.6s; }
+
+    </style>
+    
+    
+    
+    
+<p id="overview"></p><br>
+  
+
+    <!-- Overview -->
+   <div class="container container-div" >
+    <h3  class="section-title" style="text-align: center;"  >Overview</h3><br>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body" onclick="toggleExpand(this)">
+                    <h3>Revolutionizing Battery Health with Predictive AI</h3>
+                    <p>
+                        In the rapidly growing electric vehicle (EV) industry, battery health plays a critical role in ensuring both vehicle performance and longevity. With advancements in Artificial Intelligence (AI), especially predictive AI, battery diagnostics have seen a revolutionary shift. Traditional methods for assessing the health of batteries were limited in scope and accuracy. However, predictive AI leverages deep learning models to forecast the <strong>State of Health (SOH)</strong> of EV batteries with unparalleled precision, improving the way batteries are monitored and maintained.
+                    </p>
+                    <p>
+                        By analyzing complex battery data such as voltage, temperature, and current, predictive AI models can predict when a battery will fail, its remaining life, and any safety concerns. This proactive approach reduces costs, maximizes battery efficiency, and ensures optimal performance throughout the battery’s lifespan.
+                    </p>
+                    <p>
+                        The project implements an <strong>ensemble deep learning approach</strong> which combines <strong>Convolutional Neural Networks (CNNs)</strong>, <strong>Long Short-Term Memory (LSTM)</strong> networks, <strong>Recurrent Neural Networks (RNNs)</strong>, and <strong>Light Gradient Boosting Machines (LGBM)</strong>. These models work together to analyze both spatial and time-series patterns within the battery data, delivering high-accuracy predictions that traditional machine learning models cannot achieve.
+                    </p>
+                    <p>
+                        With predictive AI, the ability to foresee potential battery failures not only extends battery life but also promotes greener and more sustainable electric vehicle usage. This innovation pushes the boundaries of battery diagnostics, ensuring that the future of electric mobility is safer, more reliable, and cost-effective.
+                    </p>
+                </div>
+                <script>
+                    // JavaScript function to toggle the "expanded" class
+                    function toggleExpand(element) {
+                        element.classList.toggle("expanded");
+                    }
+                </script>
+            
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body"  >
+                  <img src="{% static 'images/ai.jpeg' %}" width="250px;" style="padding-top: 100px;">
+                  
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body"  onclick="toggleExpand(this)">
+                    <h3>
+                        The Solution: Ensemble Deep Learning
+                    </h3>
+                    <p>
+                        Our ensemble deep learning approach combines several advanced machine learning models—Convolutional Neural Networks (CNN), Long Short-Term Memory (LSTM) networks, Recurrent Neural Networks (RNN), and Light Gradient Boosting Machines (LGBM)—to accurately model battery health and predict the State of Health (SOH) of electric vehicle batteries. This combination of models allows us to effectively handle various types of data—spatial, temporal, and sequential—that are crucial for understanding battery behavior.
+                    </p>
+                    
+                    <p>
+                        Convolutional Neural Networks (CNNs) are particularly adept at extracting spatial features from battery data, such as voltage and temperature variations across different sensors and time periods. By detecting patterns in these spatial features, CNNs can identify anomalies or changes in the battery's physical state that might indicate early signs of degradation or failure.
+                    </p>
+                    
+                    <p>
+                        Long Short-Term Memory (LSTM) networks are designed to capture long-term dependencies in time-series data, which is essential for predicting battery health over extended periods. These networks excel at processing sequential data, such as charging and discharging cycles, enabling accurate predictions of battery degradation based on past behavior.
+                    </p>
+                    
+                    <p>
+                        Recurrent Neural Networks (RNNs) complement LSTMs by handling temporal dependencies in the data, where the sequence of events (e.g., charging rate, usage patterns) plays a significant role in determining the battery's future state. RNNs can track time-varying patterns, such as fluctuations in battery temperature or charging rates, that directly influence the SOH.
+                    </p>
+                    
+                    <p>
+                        Finally, Light Gradient Boosting Machines (LGBM) provide a powerful and efficient way to combine the outputs of the deep learning models. LGBM is an ensemble technique that aggregates the predictions of multiple weak models, resulting in a robust model that performs exceptionally well on high-dimensional data like battery health datasets. It is particularly useful in boosting the accuracy of predictions by focusing on the most informative features.
+                    </p>
+                    
+                    <p>
+                        By combining these models, our ensemble approach captures a wide range of complex relationships within the battery data, making it far more effective at predicting the SOH than traditional methods. This integrated approach ensures that our model can accurately forecast battery performance, predict potential failures, and provide actionable insights to extend battery life and improve the efficiency of electric vehicles.
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <img src="{% static 'images/dl.jpeg' %}" width="250px;" style="padding-top: 100px;">
+                    
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body"  onclick="toggleExpand(this)">  <h3>
+                    The Challenge
+                </h3>
+                <p>
+                    
+                    Traditional machine learning models such as Support Vector Machines (SVM), Decision Trees, and Linear Regression are commonly used for predictions in various industries. However, when it comes to complex, high-dimensional data like that of electric vehicle (EV) batteries, these methods often fall short. The dynamic nature of parameters such as voltage, current, and temperature makes accurate prediction of the State of Health (SOH) of EV batteries highly challenging. These traditional models struggle to capture the intricate relationships and nonlinear behaviors within the data, leading to suboptimal predictions and, in some cases, inaccurate forecasts.
+                </p>
+                
+                <p>
+                    Furthermore, as EVs and battery technology evolve, the amount of data generated by battery management systems (BMS) continues to grow. Advanced BMS incorporate numerous sensors that monitor various parameters such as charge cycles, temperature fluctuations, charging and discharging rates, and environmental conditions. This increasing volume of real-time data complicates the modeling process and requires more sophisticated approaches to ensure accurate predictions over time.
+                </p>
+                
+                <p>
+                    Another significant challenge is the diversity in battery chemistries. Different types of batteries, such as lithium-ion, lithium-polymer, and emerging solid-state batteries, have distinct performance characteristics. These chemistries behave differently under varying conditions, meaning a one-size-fits-all approach does not work. Models built using traditional algorithms fail to account for these differences, leading to inaccurate predictions when applied to new battery types or when the battery experiences unusual environmental factors.
+                </p>
+                
+                <p>
+                    Moreover, the aging of EV batteries is a non-linear process influenced by a combination of factors like usage patterns, temperature extremes, and charging habits. Predicting the SOH of batteries thus becomes a complex problem that involves both spatial and temporal data. Traditional models are often not well-equipped to analyze these time-series data, where past performance plays a critical role in forecasting future behavior. This is where the need for advanced predictive AI techniques, such as ensemble learning and deep learning, becomes paramount.
+                </p>
+                
+                <p>
+                    As the EV industry grows, the demand for more accurate, reliable, and scalable solutions to predict battery health also increases. Without reliable SOH predictions, EV owners and manufacturers face the risk of unexpected battery failures, leading to costly repairs, downtimes, and potential safety hazards. Addressing these challenges with more robust, data-driven models is crucial to ensuring the future of electric mobility is both sustainable and cost-effective.
+                </p></div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <img    src="{% static 'images/svm.png' %}" width="250px;" style="padding-top: 100px;">
+                 
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body"  onclick="toggleExpand(this)">
+                    <h3>Applications</h3>
+                    <p>
+                        <strong>Smart Charging Stations:</strong> Integrate predictive AI to optimize charging cycles based on battery health and usage patterns.
+                    </p>
+                    <p>
+                        <strong>Battery Recycling:</strong> Use AI-driven insights to identify batteries that are reaching end-of-life and need recycling.
+                    </p>
+                    <p>
+                        <strong>Fleet Maintenance:</strong> Proactively schedule battery maintenance based on health predictions, reducing downtime and repair costs.
+                    </p>
+                    <p>
+                        <strong>Energy Storage Systems:</strong> Monitor and maintain battery health in energy storage solutions, ensuring efficiency in renewable energy systems.
+                    </p>
+                    <p>
+                        <strong>EV Performance Enhancement:</strong> Use predictive AI to adjust vehicle settings for optimal battery performance, maximizing range and efficiency.
+                    </p>
+                    <p>
+                        <strong>Electric Aviation:</strong> Apply battery health monitoring for the emerging electric aviation industry, ensuring safe and reliable aircraft operations.
+                    </p>
+                    <p>
+                        <strong>Mobile Devices:</strong> Integrate battery health predictions into smartphones and other portable devices to extend battery life and optimize charging habits.
+                    </p>
+                    <p>
+                        <strong>Robotics:</strong> Enhance battery management in robotic systems, ensuring prolonged operational life and improved performance.
+                    </p>
+                    <p>
+                        <strong>Solar-powered EVs:</strong> Optimize battery health and performance for solar-powered electric vehicles, balancing energy supply and demand.
+                    </p>
+                    <p>
+                        <strong>Government Policy:</strong> Use data-driven insights to inform regulatory policies and standards related to battery health and recycling.
+                    </p>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <img  src="{% static 'images/bh.webp' %}" width="250px;" style="padding-top: 100px;">
+                   
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<p id="workflow"></p>
+
+   <!-- workflow -->
+<!-- workflow -->
+<div class="container container-div" >
+    <h3 id="overview" class="section-title" style="text-align: center;">Workflow</h3>
+    <br>
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body"  >
+                    <img src="{% static 'images/Data-Collection-AdobeStock_105428565-1024x1024.jpeg' %}" width="250px;" style="padding-top: 50px;">
+                    
+
+                     </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body" onclick="toggleExpand(this)">
+                    <h3>Data Collection</h3>
+                    <p>In the first step of our project, we gather relevant data from various sources, such as sensors embedded in EVs or battery management systems. This data typically includes key parameters like battery voltage, current, temperature, charge cycles, and discharge patterns. The quality of the data is crucial for ensuring the accuracy of the model, so proper calibration of sensors is also essential. The collection process can occur in real-time or be gathered from historical datasets, depending on the system requirements. We aim to capture a wide range of data across various operational conditions to ensure our model can generalize well. This stage also involves ensuring the data's consistency and synchronization across multiple sources. The data collection process is ongoing to keep our models updated and reflective of the latest battery health trends.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body"  onclick="toggleExpand(this)">
+                    <h3>Data Preprocessing</h3>
+                    <p>Data preprocessing is the critical step where raw data is cleaned, transformed, and organized for use in machine learning models. This includes handling missing values, outlier detection, and normalization to ensure consistency and prevent model bias. Data normalization is especially important when combining different features like voltage, current, and temperature, as these can have different scales. For instance, temperature might range from -40°C to 85°C, whereas voltage could range from 3V to 4.2V. By scaling the data, we ensure that the model treats all features equally. Additionally, the data might be divided into training, validation, and testing sets to evaluate the model's performance effectively. The goal of this phase is to ensure the data is clean, accurate, and suitable for further analysis and model training.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body" onclick="toggleExpand(this)">
+                    <h3>Model Training</h3>
+                    <p>Model training is the heart of our project, where machine learning algorithms are applied to the preprocessed data to build a predictive model. We use a hybrid approach that includes Convolutional Neural Networks (CNNs), Long Short-Term Memory (LSTM) networks, Recurrent Neural Networks (RNNs), and Light Gradient Boosting Machines (LGBM). Each model has a unique strength; CNNs excel at recognizing spatial patterns in data, LSTMs and RNNs are ideal for capturing temporal sequences, and LGBM performs exceptionally well in handling structured data. These models are trained to recognize patterns in battery data that predict the State of Health (SOH), remaining lifespan, and possible failure points of the batteries. The models are evaluated using performance metrics such as accuracy, Mean Squared Error (MSE), and Mean Absolute Error (MAE) to ensure they deliver reliable predictions. The training process can be resource-intensive, requiring considerable computational power to optimize the models' parameters effectively.</p>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body" onclick="toggleExpand(this)">
+                    <h3>Prediction & Evaluation</h3>
+                    <p>After the models are trained, they are used to make predictions on unseen test data. These predictions are crucial for evaluating the accuracy and reliability of the models. The predictions are compared against real-world outcomes to assess how well the model can forecast the battery’s State of Health (SOH) and predict potential failure events. During this phase, evaluation metrics like Root Mean Squared Error (RMSE), Mean Absolute Error (MAE), and R-squared are calculated to quantify the model's performance. If the models are not performing to expectations, techniques like hyperparameter tuning, cross-validation, or feature engineering might be applied to improve their accuracy. This step ensures that the models are ready for deployment, as only models with high performance are considered for integration into real-world applications. Additionally, visualizations such as prediction error plots are generated to give further insights into model performance.</p>
+               
+                    </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body"  onclick="toggleExpand(this)" >
+                    <h3>Deployment & Integration</h3>
+                    <p>Once the models have been validated and fine-tuned, the next step is deployment into real-world systems. This involves integrating the predictive models into battery management systems, electric vehicles (EVs), or fleet management platforms. In this phase, the models are embedded into a user-friendly application that can provide real-time battery health diagnostics. The integration process ensures that the predictions are made in a timely manner, allowing for preventive maintenance and battery replacements. The deployment could also involve setting up cloud infrastructure for continuous data collection, processing, and prediction updates. Furthermore, the deployed model is tested under real-world operational conditions to assess its robustness and scalability. During this phase, the team ensures that the models work seamlessly with existing hardware and software infrastructure, providing real-time alerts and predictive insights for battery management.</p>
+               
+                    </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body"  onclick="toggleExpand(this)">
+                    <h3>Continuous Monitoring</h3>
+                    <p>Continuous monitoring is the final phase in the workflow, where the deployed models are actively used to track battery health over time. The system continuously collects new data and processes it through the predictive models to monitor the State of Health (SOH) of the battery in real-time. By continuously evaluating battery health, the system can alert users about potential issues, such as a decrease in battery efficiency, remaining charge capacity, or impending failure. Additionally, as more data is collected over time, the models are retrained periodically to incorporate new patterns and improve their predictive accuracy. This ensures the system remains up-to-date and continues to provide relevant insights. The continuous feedback loop allows for proactive battery management, reducing downtime, enhancing performance, and increasing the overall lifespan of the batteries. Furthermore, user feedback and operational data from the field help fine-tune the models for more precise predictions in future deployments.</p>
+               
+                   </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body"  >
+                    <img  src="{% static 'images/cm.webp' %}" width="250px;" style="padding-top: 100px;">
+                   
+
+                   </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+  
+
+<p id="Algorithms">
+
+</p>
+
+    <!-- Algorithms -->
+<div class="container container-div">
+    <h3  class="section-title" style="text-align: center;">Algorithms</h3><br>
+    <div class="row">
+        <!-- Recurrent Neural Network (RNN) -->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body" onclick="toggleExpand(this)">
+                    <h3>Recurrent Neural Network (RNN)</h3>
+                    <p><strong>RNNs</strong> are a class of artificial neural networks designed to handle sequential data by maintaining a memory of previous inputs through hidden states. This memory mechanism allows RNNs to capture time-dependent patterns, making them highly effective for time-series analysis. In the context of our project, the RNN plays a pivotal role in predicting battery health over time by analyzing historical battery parameters, such as voltage, current, and temperature. These parameters fluctuate dynamically, and RNNs are able to model these temporal dependencies effectively. For instance, when predicting battery degradation, past charging cycles, temperature fluctuations, and voltage changes are essential factors, and RNNs excel at remembering and processing this sequential data. The ability of RNNs to retain information over long sequences makes them suitable for forecasting battery performance and anticipating potential failure points. By training on large datasets, the RNN can learn subtle patterns in the battery’s behavior that are indicative of future health issues, enabling early interventions and maintenance recommendations.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Convolutional Neural Network (CNN) -->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body"  >
+                    <img src="{% static 'images/rnn.png' %}" width="250px;" style="padding-top: 100px;">
+                    
+
+                     </div>
+            </div>
+        </div>
+
+        <!-- Long Short-Term Memory (LSTM) -->
+        <div class="col-md-3">
+            <div class="card" >
+                <div class="card-body" onclick="toggleExpand(this)">
+                    <h3>Long Short-Term Memory (LSTM)</h3>
+                    <p><strong>LSTMs</strong> are a type of RNN designed to overcome the vanishing gradient problem by using memory cells to store long-term dependencies. This is crucial for tasks where the relationship between inputs spans over long sequences, such as battery health prediction. LSTMs are well-suited to our project because they can model complex temporal dependencies in battery data over extended periods, such as daily or monthly cycles of charge and discharge. Unlike traditional RNNs, LSTMs have a specialized architecture with gates that control the flow of information, allowing them to learn which past information is important to retain and which should be discarded. This makes them highly effective at learning from long-term data trends, such as temperature fluctuations or prolonged charging cycles that might affect the battery’s state of health. For example, if a battery experiences several high-temperature conditions over the course of its life, LSTM networks can capture these long-term patterns and predict when the battery is likely to deteriorate. By learning these dependencies, LSTMs can provide accurate predictions for when a battery will need maintenance or replacement, helping to optimize battery usage and extend its lifecycle.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Light Gradient Boosting Machine (LGBM) -->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body"  >
+                    <img  src="{% static 'images/lstm.webp' %}"width="250px;" style="padding-top: 100px;">
+                   
+
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body"  onclick="toggleExpand(this)">  
+                    <h3>Convolutional Neural Network (CNN)</h3>
+                    <p><strong>CNNs</strong> are a powerful tool for processing grid-like data, such as images, but they are also highly effective at handling multi-dimensional data in other domains. In this project, CNNs are used to analyze complex, multi-dimensional battery data where spatial relationships might exist between different features such as voltage, current, and temperature. These features may have local patterns or interactions that CNNs can detect through their convolutional layers, which apply filters to identify significant features and reduce the dimensionality of the data. The CNN model helps identify spatial patterns within the battery data that could indicate anomalies, such as sudden voltage drops or temperature spikes, which are often early signs of battery degradation or failure. The ability to automatically extract these features allows CNNs to process large datasets with minimal manual feature engineering. This makes CNNs particularly useful for our project where the battery data consists of high-dimensional features, and CNNs help extract relevant patterns efficiently, reducing computational complexity while maintaining high accuracy in predictions.</p>
+               
+
+            </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <img src="{% static 'images/cnn.avif' %}" width="250px;" style="padding-top: 100px;">
+                    
+
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body"  onclick="toggleExpand(this)">
+                    <h3>Light Gradient Boosting Machine (LGBM)</h3>
+                    <p><strong>LGBM</strong> is an efficient gradient boosting framework designed to handle large datasets and complex models. It is particularly useful in scenarios where prediction accuracy is critical, such as in battery health prediction. In our project, LGBM is used to predict the state of health (SOH) of batteries based on various features like voltage, current, charge cycles, and temperature. The key advantage of LGBM is its ability to handle categorical and numerical features simultaneously and perform feature selection to identify the most important variables affecting battery health. By training multiple decision trees sequentially, LGBM improves the model’s accuracy by correcting the errors of previous trees, making it highly effective for predicting battery degradation. Moreover, LGBM is optimized for performance with faster training times and less memory consumption, making it an excellent choice for large-scale datasets. The algorithm's ability to handle imbalanced datasets, where certain battery failures may be rare but critical to detect, makes it suitable for this application. Additionally, LGBM allows for easy interpretation of feature importance, which provides valuable insights into the factors that most influence battery health, enabling targeted interventions to improve battery life and reliability.</p>
+                
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <img  src="{% static 'images/lgbm.webp' %}" width="250px;" style="padding-top: 100px;">
+                   
+
+                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<p  id="Benefit"></p>
+
+
+
+<!-- Revolutionizing Battery Health -->
+<div class="container container-div">
+    <h3 class="section-title" style="text-align: center;">Benefit's</h3><br>
+    <div class="row">
+        <!-- Benefit 1: Enhanced Battery Life Prediction (RNN) -->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body" onclick="toggleExpand(this)">
+                    <h3> Enhanced Battery Life Prediction</h3>
+                    <p><strong>Recurrent Neural Networks (RNNs)</strong> are designed to work with sequential data, making them ideal for analyzing battery health over time. By processing historical data of battery parameters like voltage, current, and temperature, RNNs can capture trends and patterns that influence battery longevity. This approach enables highly accurate predictions of the battery's state of health (SOH) over extended periods. With the ability to remember previous inputs, RNNs can effectively predict when a battery is likely to degrade, allowing for proactive maintenance and timely replacement. This ultimately leads to optimized battery life, reduces unplanned downtimes, and helps extend the overall lifespan of the battery, making it more cost-effective for users.</p>
+                
+                   </div>
+            </div>
+        </div>
+
+        <!-- Benefit 2: Accurate Fault Detection (CNN) -->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body">
+                    <img src="{% static 'images/b1.webp' %}" width="250px;" style="padding-top: 100px;">
+                    
+
+                    </div>
+            </div>
+        </div>
+
+        <!-- Benefit 3: Predictive Maintenance & Failure Prevention (LSTM) -->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body" onclick="toggleExpand(this)">
+                    <h3> Predictive Maintenance & Failure Prevention</h3>
+                    <p><strong>Long Short-Term Memory (LSTM)</strong> networks, a specialized form of RNN, are ideal for predicting battery failure before it occurs. LSTMs excel at remembering long-term dependencies in sequential data, such as trends in temperature fluctuations and charge-discharge cycles. By analyzing this data, LSTMs can predict when a battery is likely to fail, enabling predictive maintenance. Instead of waiting for a battery to show visible signs of wear, LSTMs can help anticipate potential failures based on historical behavior, providing valuable time to address the issue before it leads to an outage or significant damage. This enhances reliability and helps avoid costly downtime, improving the overall performance of battery-dependent systems.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Benefit 4: Feature Importance & Interpretability (LGBM) -->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body"onclick="toggleExpand(this)">
+                    <h3> Feature Importance & Interpretability</h3>
+                    <p><strong>Light Gradient Boosting Machine (LGBM)</strong> offers an efficient and interpretable approach for predicting battery health. One of the major advantages of LGBM is its ability to rank the importance of different features, such as voltage, current, temperature, and charge cycles, in determining battery health. This interpretability enables users to understand which factors most influence battery degradation and helps focus efforts on mitigating those specific issues. Additionally, LGBM's efficiency allows for the analysis of large datasets quickly, which is essential for real-time monitoring and decision-making. With its robust performance in handling complex relationships between features, LGBM provides a reliable and transparent way to optimize battery maintenance and performance, making it an indispensable tool in battery health monitoring systems.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <!-- Benefit 5: Real-Time Monitoring & Insights -->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body" onclick="toggleExpand(this)">
+                    <h3> Real-Time Monitoring & Insights</h3>
+                    <p><strong>Recurrent Neural Networks (RNNs)</strong> and other deep learning models enable real-time analysis of battery data, allowing for continuous monitoring. This means that the health of the battery can be tracked in real time, offering immediate insights into any issues as they arise. For instance, by analyzing parameters such as voltage, current, and temperature, the system can quickly detect any abnormal behavior, such as overheating or deep discharge, which could lead to battery failure. This early warning system helps in taking corrective actions right away, enhancing the safety and reliability of the battery-powered system.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Benefit 6: Cost Efficiency & Resource Optimization -->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body"onclick="toggleExpand(this)">
+                    <h3> Cost Efficiency & Resource Optimization</h3>
+                    <p><strong>Convolutional Neural Networks (CNNs)</strong> and other predictive models reduce the need for costly interventions by predicting battery failures ahead of time. This minimizes emergency repairs and replacements, ensuring that resources are used efficiently. Additionally, the ability to predict when a battery is reaching the end of its useful life allows for better resource allocation, reducing waste and lowering costs in both maintenance and operational expenses. By implementing these technologies, businesses can reduce their overall battery-related expenditures and extend the lifecycle of their assets.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Benefit 7: Scalability & Flexibility -->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body" >
+                    <img src="{% static 'images/b2.jpg' %}" width="250px;" style="padding-top: 100px;">
+                    
+
+                     </div>
+            </div>
+        </div>
+
+        <!-- Benefit 8: Improved Battery Recycling & Sustainability -->
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-body"onclick="toggleExpand(this)">
+                    <h3> Improved Battery Recycling & Sustainability</h3>
+                    <p><strong>Light Gradient Boosting Machine (LGBM)</strong> helps identify batteries that are nearing the end of their lifecycle, making it easier to recycle them properly. By predicting when a battery's performance will degrade significantly, LGBM can help identify the best time for recycling, ensuring that resources are reused and waste is minimized. This contributes to sustainability efforts by promoting responsible battery disposal and enhancing the recycling process, ultimately supporting environmental goals and reducing the ecological impact of battery production and disposal.</p>
+             
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<!-- 🚀 Deployment Section -->
+<div class="container container-div" style="position: relative;">
+    <h3 id="tt" class="section-title text-center">Deployment</h3><br>
+
+    <div class="row align-items-stretch">
+        <!-- 📝 Input Form (50% Width) -->
+        <div class="col-md-6 d-flex align-items-stretch">
+            <div class="form-container p-4 border rounded w-100 d-flex flex-column justify-content-center" style="min-height: 540px;">
+                <h2 class="mb-4 text-center">Predict Battery SOH</h2>
+                <form id="battery-form" onsubmit="return false;">
+                    <div class="row">
+                        
+                        <div class="col-6 mb-3">
+                            <label for="model-year">Model Year: <br> <span class="text-muted small">Ideal Range: 2012 to 2025</span></label>
+                            <input type="number" id="model-year" class="form-control" required>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="motor-power">Motor Power (kW): <br> <span class="text-muted small">Ideal Range: 35 to 829</span></label>
+                            <input type="number" id="motor-power" class="form-control" step="any" required>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="range">Range (km): <br> <span class="text-muted small">Ideal Range: 92 to 837</span></label>
+                            <input type="number" id="range" class="form-control" step="any" required>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="voltage">Terminal Voltage (V): <br> <span class="text-muted small">Ideal Range: 3.0 to 5.0</span></label>
+                            <input type="number" id="voltage" class="form-control" step="any" required>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="current">Terminal Current (A):<br>  <span class="text-muted small">Ideal Range: -3 to 1</span></label>
+                            <input type="number" id="current" class="form-control" step="any" required>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="temperature">Temperature (°C):<br>  <span class="text-muted small">Ideal Range: 20 to 45</span></label>
+                            <input type="number" id="temperature" class="form-control" step="any" required>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="charge-current">Charge Current (A): <br> <span class="text-muted small">Ideal Range: -2 to 2</span></label>
+                            <input type="number" id="charge-current" class="form-control" step="any" required>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="charge-voltage">Charge Voltage (V):<br>  <span class="text-muted small">Ideal Range: 0 to 5</span></label>
+                            <input type="number" id="charge-voltage" class="form-control" step="any" required>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="capacity">Battery Capacity:<br>  <span class="text-muted small">Ideal Range: 1.2 to 2</span></label>
+                            <input type="number" id="capacity" class="form-control" step="any" required>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <label for="cycle">Battery Cycle Count: <br> <span class="text-muted small">Ideal Range: 1 to 1000</span></label>
+                            <input type="number" id="cycle" class="form-control" required>
+                        </div>
+                        
+                    </div>
+                    <button type="submit" class="btn btn-success w-100">Predict SOH</button>
+                </form>
+                <!-- 🐱 Tom Image -->
+                <div id="tom-container" style="display: none; text-align: center; margin-top: 20px;">
+                    <img id="tom-cat" src="{% static 'images/tom1.png' %}" alt="Tom the Cat"
+                         style="height: 220px; border-radius: 30px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); animation: jumpOut 1s ease-out forwards;" />
+                </div>
+                
+                <style>
+                    @keyframes jumpOut {
+                        0% {
+                            transform: translateY(50px) scale(0.5);
+                            opacity: 0;
+                        }
+                        100% {
+                            transform: translateY(0) scale(1);
+                            opacity: 1;
+                        }
+                    }
+                    
+                    /* Center Tom in the middle of the screen */
+                    #tom-container {
+                        display: none;
+                        position: fixed;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        z-index: 9999;
+                        text-align: center;
+                    }
+                    </style>
+                    
+                    <script>
+                        document.addEventListener('DOMContentLoaded', () => {
+                            const form = document.getElementById('battery-form');
+                            const tomContainer = document.getElementById('tom-container');
+                            const inputs = form.querySelectorAll('input');
+                        
+                            let timer = null;
+                            let formVisible = false;
+                        
+                            // Helper: Check if all inputs are empty
+                            function areInputsEmpty() {
+                                return Array.from(inputs).every(input => input.value.trim() === '');
+                            }
+                        
+                            // Helper: Start or reset the inactivity timer
+                            function startInactivityTimer() {
+                                clearTimeout(timer);
+                                tomContainer.style.display = 'none';
+                        
+                                timer = setTimeout(() => {
+                                    if (formVisible && areInputsEmpty()) {
+                                        tomContainer.style.display = 'block';
+                                    }
+                                }, 3000);
+                            }
+                        
+                            // Start/reset timer when user focuses or types
+                            inputs.forEach(input => {
+                                input.addEventListener('focus', startInactivityTimer);
+                                input.addEventListener('input', startInactivityTimer);
+                            });
+                        
+                            // IntersectionObserver to detect form visibility
+                            const observer = new IntersectionObserver(entries => {
+                                entries.forEach(entry => {
+                                    formVisible = entry.isIntersecting;
+                        
+                                    if (formVisible) {
+                                        startInactivityTimer(); // restart timer every time form comes into view
+                                    } else {
+                                        clearTimeout(timer);
+                                        tomContainer.style.display = 'none';
+                                    }
+                                });
+                            }, { threshold: 0.3 });
+                        
+                            if (form) observer.observe(form);
+                        });
+                        </script>
+                        
+                        
+                                            
+
+
+    
+
+            </div>
+        </div>
+    
+        <!-- 📷 Image Section (50% Width) -->
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
+            <div class="w-100 d-flex align-items-center justify-content-center border rounded shadow" style="min-height: 540px;">
+                <img src="{% static 'images/prediction.webp' %}" 
+                     class="img-fluid rounded" 
+                     alt="Battery Image" 
+                     style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="result-container mt-5 p-5 border rounded shadow-lg" id="soh-result-container" style="display: none; background-color: #ffffff; color: #212529;">
+        <!-- 🏆 Battery Analysis Report Header -->
+        <h1 style="text-align: center; font-size: 42px; font-weight: 800; color: #004085; margin-bottom: 25px;">
+            Battery Analysis Report 
+        </h1>
+    
+        <!-- 🔋 Predicted SOH -->
+        <h2 class="text-center text-dark font-weight-bold">🔋 Predicted SOH: <span id="soh-result" class="text-danger font-weight-bold"></span></h2>
+        
+        <!-- ⚠️ Abnormal Features -->
+        <div id="abnormal-features" class="alert alert-danger text-center font-weight-bold mt-4" style="font-size: 20px; display: none;"></div> 
+    
+        <!-- ⚡ Battery Condition -->
+        <div id="battery-condition-container" class="alert alert-primary text-center font-weight-bold mt-4" style="font-size: 20px; display: none;">
+            <p id="battery-condition"></p>
+        </div>
+    
+        <!-- 📊 Performance & Lifespan Metrics -->
+        <div class="row text-center mt-4">
+            <div class="col-md-6">
+                <div id="battery-life-container" class="alert alert-success font-weight-bold" style="font-size: 20px; display: none;">
+                    ⏳ Estimated Battery Life: <span id="battery-life"></span> years
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div id="battery-score-container" class="alert alert-warning font-weight-bold" style="font-size: 20px; display: none;">
+                    ⭐ Battery Performance Score: <span id="battery-score"></span> / 100
+                </div>
+            </div>
+        </div>
+    
+        <!-- 🚨 Battery Risk & Imbalance -->
+        <div class="row text-center mt-4">
+            <div class="col-md-6">
+                <div id="imbalance-indicator-container" class="alert alert-danger font-weight-bold" style="font-size: 20px; display: none;">
+                    ⚠ Charge/Discharge Imbalance: <span id="imbalance-indicator"></span>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div id="battery-risk-container" class="alert alert-danger font-weight-bold" style="font-size: 20px; display: none;">
+                    🚨 Battery Risk Assessment: <span id="battery-risk"></span>
+                </div>
+            </div>
+        </div>
+    
+        <!-- 🔋 Battery Storage & Self-Discharge -->
+        <div class="row text-center mt-4">
+            <div class="col-md-6">
+                <div id="battery-energy-container" class="alert alert-info font-weight-bold" style="font-size: 20px; display: none;">
+                    ⚡ Battery Energy Storage: <span id="battery-energy"></span> Wh
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div id="self-discharge-container" class="alert alert-secondary font-weight-bold" style="font-size: 20px; display: none;">
+                    🔋 Self-Discharge Rate: <span id="self-discharge"></span> % per day
+                </div>
+            </div>
+        </div>
+    
+        <!-- 🌍 Environmental Impact & Fast Charging -->
+        <div class="row text-center mt-4">
+            <div class="col-md-6">
+                <div id="carbon-footprint-container" class="alert alert-success font-weight-bold" style="font-size: 20px; display: none;">
+                    🌍 Carbon Footprint Reduction: <span id="carbon-footprint"></span> %
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div id="fast-charging-container" class="alert alert-primary font-weight-bold" style="font-size: 20px; display: none;">
+                    ⚡ Fast-Charging Suitability: <span id="fast-charging-status"></span>
+                </div>
+            </div>
+        </div>
+    
+        <!-- 📊 Data Visualization Charts -->
+        <div class="mt-5 d-flex justify-content-center">
+            <div class="chart-container">
+                <canvas id="histogram" class="chart" style="max-width: 600px; max-height: 350px;"></canvas>
+            </div>
+            <div class="chart-container">
+                <canvas id="pie-chart" class="chart" style="max-width: 600px; max-height: 350px;"></canvas>
+            </div>
+        </div>
+    
+        <!-- 📥 Download Report Button -->
+        <div id="download-report-container" class="text-center mt-5" style="display: none;">
+            <button id="download-report" class="btn btn-lg btn-primary w-50" style="font-size: 22px; font-weight: bold;">📥 Download Report</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+    
+    <style>
+        /* Ensure the container holds the chart well and doesn't overflow */
+       
+    
+        /* Apply consistent sizes to both charts */
+        .chart {
+            max-width: 100%;
+            max-height: 300px; /* Limit max height */
+            width: 80%;  /* You can adjust this for better width management */
+            margin-bottom: 20px; /* Add space between the charts */
+        }
+    
+        /* Styling for the pie chart specifically */
+        #pie-chart {
+            height: 300px; /* Set height of the pie chart */
+        }
+    
+        /* Optionally, adjust histogram height */
+        #histogram {
+            height: 300px; /* Set height of the histogram */
+        }
+    
+        /* Style for download button */
+        #download-report {
+            margin-top: 20px;
+        }
+    </style>
+    
+      
+      
+    </div>
+  </div>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+
+
+  <script>
+   document.getElementById('battery-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // 📥 Collect form inputs
+    let formData = {
+        "Model_Year": parseInt(document.getElementById('model-year').value),
+        "Motor_(kW)": parseFloat(document.getElementById('motor-power').value),
+        "Range_(km)": parseFloat(document.getElementById('range').value),
+        "terminal_voltage": parseFloat(document.getElementById('voltage').value),
+        "terminal_current": parseFloat(document.getElementById('current').value),
+        "temperature": parseFloat(document.getElementById('temperature').value),
+        "charge_current": parseFloat(document.getElementById('charge-current').value),
+        "charge_voltage": parseFloat(document.getElementById('charge-voltage').value),
+        "capacity": parseFloat(document.getElementById('capacity').value),
+        "cycle": parseInt(document.getElementById('cycle').value)
+    };
+
+    // 🚀 Send data to Django API
+    fetch('/battery/predict-soh/', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log("🔹 RESPONSE RECEIVED:", data);
+
+        if (data.predicted_soh !== undefined) {
+            let soh = (data.predicted_soh * 100).toFixed(2); // Convert to percentage
+            document.getElementById("soh-result").innerHTML = `<strong>${soh}%</strong>`;
+            document.getElementById("soh-result-container").style.display = "block";
+            // ✅ FIX: Ensure "Download Report" is displayed
+        document.getElementById("download-report-container").style.display = "block";
+
+            // 🛠 Declare variables once (REMOVE DUPLICATE DECLARATIONS)
+            let chargeVoltage = parseFloat(document.getElementById("charge-voltage").value) || 0;
+            let chargeCurrent = parseFloat(document.getElementById("charge-current").value) || 0;
+            let temperature = parseFloat(document.getElementById("temperature").value) || 25;
+            let terminalVoltage = parseFloat(document.getElementById("voltage").value) || 0;
+            let terminalCurrent = parseFloat(document.getElementById("current").value) || 0;
+            let capacity = parseFloat(document.getElementById("capacity").value) || 0;
+            let cycleCount = parseInt(document.getElementById("cycle").value) || 0;
+            let rangeKm = parseFloat(document.getElementById("range").value) || 0;
+
+            // ⚡ Fast-Charging Suitability
+            let isFastChargeCapable = " Not Suitable";
+            let color = "red";
+            if (soh >= 80 && chargeVoltage >= 400 && chargeCurrent >= 50 && (temperature >= 15 && temperature <= 45)) {
+                isFastChargeCapable = " Suitable for Fast Charging";
+                color = "green";
+            } else if (soh >= 70 && chargeVoltage >= 350 && chargeCurrent >= 40 && (temperature >= 10 && temperature <= 50)) {
+                isFastChargeCapable = "Partially Suitable (Monitor Temperature)";
+                color = "orange";
+            }
+            document.getElementById("fast-charging-status").innerText = isFastChargeCapable;
+            document.getElementById("fast-charging-status").style.color = color;
+            document.getElementById("fast-charging-container").style.display = "block";
+
+            // 🌍 Carbon Footprint Reduction Calculation
+            let fuelEfficiency = 8; 
+            let carbonPerLiter = 2.31; 
+            let evEfficiency = 15; 
+            let gridCarbonFactor = 0.4; 
+            let fuelCarbon = (rangeKm / 100) * fuelEfficiency * carbonPerLiter;
+            let evCarbon = (rangeKm / 100) * evEfficiency * gridCarbonFactor;
+            let carbonReduction = ((fuelCarbon - evCarbon) / fuelCarbon * 100).toFixed(2);
+            document.getElementById("carbon-footprint").innerText = carbonReduction;
+            document.getElementById("carbon-footprint-container").style.display = "block";
+
+         
+
+
+
+
+            // 🔋 Self-Discharge Rate
+            let baseDischargeRate = 0.05; 
+            let selfDischargeRate = (baseDischargeRate * Math.exp(0.05 * (temperature - 25))).toFixed(3);
+            selfDischargeRate = Math.min(selfDischargeRate, 0.5);
+            selfDischargeRate = Math.max(selfDischargeRate, 0.01);
+            document.getElementById("self-discharge").innerText = selfDischargeRate;
+            document.getElementById("self-discharge-container").style.display = "block";
+
+            // 🚨 Battery Risk Assessment
+            let chargePower = chargeVoltage * chargeCurrent;
+            let dischargePower = terminalVoltage * terminalCurrent;
+            let imbalance = Math.abs(chargePower - dischargePower);
+            let batteryRisk = "Safe";
+            if (soh < 60 || temperature > 50 || imbalance > chargePower * 0.3) {
+                batteryRisk = " Danger";
+            } else if (soh < 75 || temperature > 40 || imbalance > chargePower * 0.2) {
+                batteryRisk = " Warning";
+            }
+            document.getElementById("battery-risk").innerText = batteryRisk;
+            document.getElementById("battery-risk").style.color = batteryRisk === " Danger" ? "red" : batteryRisk === "Warning" ? "orange" : "green";
+            document.getElementById("battery-risk-container").style.display = "block";
+
+            // ⚡ Battery Energy Storage Capacity
+            let energyStorage = (capacity * terminalVoltage).toFixed(2);
+            document.getElementById("battery-energy").innerText = energyStorage;
+            document.getElementById("battery-energy-container").style.display = "block";
+
+            // 🔢 Battery Performance Score
+            let maxCycles = 1000;
+            let performanceScore = (soh * (1 - (cycleCount / maxCycles))) / 1.2;
+            performanceScore = Math.max(0, Math.round(performanceScore));
+            document.getElementById("battery-score").innerText = performanceScore;
+            document.getElementById("battery-score-container").style.display = "block";
+
+            // 📌 Estimated Remaining Battery Life
+            let degradationRate = 2.5;
+            let remainingLife = (soh - 70) / degradationRate;
+            remainingLife = remainingLife > 0 ? remainingLife.toFixed(1) : "End of Life";
+            document.getElementById("battery-life").innerHTML = remainingLife;
+            document.getElementById("battery-life-container").style.display = "block";
+
+
+
+
+
+            // ⚠ Charge/Discharge Imbalance
+            let imbalanceIndicator = imbalance > chargePower * 0.2 ? " Imbalance Detected!" : "Normal";
+            document.getElementById("imbalance-indicator").innerText = imbalanceIndicator;
+            document.getElementById("imbalance-indicator-container").style.display = "block";
+       
+
+
+
+        // ⚠ Charge/Discharge Imbalance Calculation
+            
+      
+
+    
+  
+
+        if (imbalance > chargePower * 0.2) { // More than 20% difference
+            imbalanceIndicator = "Imbalance Detected!";
+        }
+
+        // Display Charge/Discharge Imbalance Indicator
+        document.getElementById("imbalance-indicator").innerText = imbalanceIndicator;
+        document.getElementById("imbalance-indicator-container").style.display = "block";
+
+
+
+             // 🔍 Determine battery condition
+        let batteryCondition = "";
+        let conditionStyle = "";
+
+        if (soh >= 90) {
+            batteryCondition = "Battery condition is good.";
+            conditionStyle = "color: green; font-weight: bold;";
+        } else if (soh >= 70) {
+            batteryCondition = "Battery condition is average and may need replacement soon.";
+            conditionStyle = "color: orange; font-weight: bold;";
+        } else if (soh >= 60) {
+            batteryCondition = "Battery condition is below average and needs replacement.";
+            conditionStyle = "color: red; font-weight: bold;";
+        } else {
+            batteryCondition = "Battery needs urgent replacement.";
+            conditionStyle = "color: darkred; font-weight: bold;";
+        }
+
+        // Update condition message
+        let conditionElement = document.getElementById("battery-condition");
+        if (conditionElement) {
+            conditionElement.innerText = batteryCondition;
+            conditionElement.style = conditionStyle;
+            document.getElementById("battery-condition-container").style.display = "block"; // Show the div
+        } else {
+            console.error("❌ ERROR: 'battery-condition' element not found!");
+        }
+
+            // 🔍 Validate abnormal input features
+            const thresholds = {
+            "Model_Year": { min: 2012, max: 2025 },
+            "Motor_(kW)": { min: 35, max: 829 },
+            "Range_(km)": { min: 92, max: 837 },
+            "terminal_voltage": { min: 3.0, max: 5.0 },
+            "terminal_current": { min: -3, max: 1 },
+            "temperature": { min: 20, max: 45 },
+            "charge_current": { min: -2, max: 2 },
+            "charge_voltage": { min: 0, max: 5 },
+            "capacity": { min: 1.2, max: 2 },
+            "cycle": { min: 1, max: 1000 }
+            };
+
+
+            let abnormalFeatures = [];
+            for (const key in thresholds) {
+                let value = formData[key];
+                let { min, max } = thresholds[key];
+
+                if (value < min || value > max) {
+                    abnormalFeatures.push(`${key} (${value})`);
+                }
+            }
+
+            const abnormalContainer = document.getElementById("abnormal-features");
+
+            if (abnormalFeatures.length > 0) {
+                abnormalContainer.innerHTML = `<strong>Abnormal Inputs:</strong><br> ${abnormalFeatures.join(', ')}`;
+                abnormalContainer.style.display = "block";
+            } else {
+                abnormalContainer.innerHTML = "<strong>No abnormalities in input values.</strong>";
+                abnormalContainer.style.display = "block";
+            }
+
+
+
+       
+
+            // 📊 Histogram Chart
+            const histogramCtx = document.getElementById('histogram').getContext('2d');
+            new Chart(histogramCtx, {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(formData),
+                    datasets: [{
+                        label: 'Input Features',
+                        data: Object.values(formData),
+                        backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: { y: { beginAtZero: true } }
+                }
+            });
+
+            // 🥧 Pie Chart
+            const pieChartCtx = document.getElementById('pie-chart').getContext('2d');
+            new Chart(pieChartCtx, {
+                type: 'pie',
+                data: {
+                    labels: Object.keys(formData),
+                    datasets: [{
+                        data: Object.values(formData),
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.7)', 'rgba(255, 99, 132, 0.7)', 'rgba(54, 162, 235, 0.7)',
+                            'rgba(153, 102, 255, 0.7)', 'rgba(255, 159, 64, 0.7)', 'rgba(255, 205, 86, 0.7)',
+                            'rgba(201, 203, 207, 0.7)', 'rgba(100, 149, 237, 0.7)', 'rgba(144, 238, 144, 0.7)',
+                            'rgba(255, 140, 0, 0.7)'
+                        ],
+                        borderColor: 'rgba(0, 0, 0, 0.2)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'top', labels: { font: { size: 14 } } },
+                        tooltip: {
+                            callbacks: {
+                                label: function(tooltipItem) {
+                                    let percentage = Math.round((tooltipItem.raw / Object.values(formData).reduce((acc, value) => acc + value, 0)) * 100);
+                                    return tooltipItem.label + ': ' + percentage + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        } else {
+            console.error("❌ API ERROR:", data);
+        }
+    })
+    .catch(error => {
+        console.error("❌ FETCH ERROR:", error);
+    });
+});
+
+    </script>
+    
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+
+document.getElementById('download-report').addEventListener('click', function() {
+    // 📥 Get input values
+    const modelYear = document.getElementById('model-year').value;
+    const motorPower = document.getElementById('motor-power').value;
+    const range = document.getElementById('range').value;
+    const voltage = document.getElementById('voltage').value;
+    const current = document.getElementById('current').value;
+    const temperature = document.getElementById('temperature').value;
+    const chargeCurrent = document.getElementById('charge-current').value;
+    const chargeVoltage = document.getElementById('charge-voltage').value;
+    const capacity = document.getElementById('capacity').value;
+    const cycle = document.getElementById('cycle').value;
+
+    // 📊 Get prediction results
+    const sohResult = document.getElementById('soh-result').textContent;
+    const batteryCondition = document.getElementById('battery-condition').textContent;
+    const batteryLife = document.getElementById('battery-life').textContent;
+    const batteryScore = document.getElementById('battery-score').textContent;
+    const imbalanceIndicator = document.getElementById('imbalance-indicator').textContent;
+    const batteryRisk = document.getElementById('battery-risk').textContent;
+    const batteryEnergy = document.getElementById('battery-energy').textContent;
+    const selfDischarge = document.getElementById('self-discharge').textContent;
+    const carbonFootprint = document.getElementById('carbon-footprint').textContent;
+    const fastCharging = document.getElementById('fast-charging-status').textContent;
+
+    // 🚨 Get abnormal feature warnings
+    let abnormalText = document.getElementById('abnormal-features').textContent.trim() || "No abnormalities in input values.";
+
+    // 📄 Create a new jsPDF instance
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // 🎯 Add centered title
+    doc.setFontSize(16);
+    doc.setFont("helvetica", "bold");
+    doc.text('Battery SOH Prediction Report', doc.internal.pageSize.width / 2, 20, { align: 'center' });
+
+    // 🔹 Define initial text position
+    let yPosition = 30;
+    const lineSpacing = 10;
+
+    // 📝 Add input values
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(12);
+    doc.text(`Model Year: ${modelYear}`, 20, yPosition); yPosition += lineSpacing;
+    doc.text(`Motor Power (kW): ${motorPower}`, 20, yPosition); yPosition += lineSpacing;
+    doc.text(`Range (km): ${range}`, 20, yPosition); yPosition += lineSpacing;
+    doc.text(`Terminal Voltage (V): ${voltage}`, 20, yPosition); yPosition += lineSpacing;
+    doc.text(`Terminal Current (A): ${current}`, 20, yPosition); yPosition += lineSpacing;
+    doc.text(`Temperature (°C): ${temperature}`, 20, yPosition); yPosition += lineSpacing;
+    doc.text(`Charge Current (A): ${chargeCurrent}`, 20, yPosition); yPosition += lineSpacing;
+    doc.text(`Charge Voltage (V): ${chargeVoltage}`, 20, yPosition); yPosition += lineSpacing;
+    doc.text(`Battery Capacity: ${capacity}`, 20, yPosition); yPosition += lineSpacing;
+    doc.text(`Battery Cycle: ${cycle}`, 20, yPosition); yPosition += lineSpacing;
+
+    // 📊 Add prediction results
+    yPosition += 5;
+    doc.setFont("helvetica", "bold");
+    doc.text("Prediction Results:", 20, yPosition); 
+    yPosition += lineSpacing;
+    doc.setFont("helvetica", "normal");
+    doc.text(`Predicted SOH: ${sohResult}`, 20, yPosition); yPosition += lineSpacing;
+    doc.text(`Battery Condition: ${batteryCondition}`, 20, yPosition); yPosition += lineSpacing;
+    doc.text(`Estimated Remaining Battery Life: ${batteryLife} years`, 20, yPosition); yPosition += lineSpacing;
+    doc.text(`Battery Performance Score: ${batteryScore} / 100`, 20, yPosition); yPosition += lineSpacing;
+    doc.text(`Charge/Discharge Imbalance: ${imbalanceIndicator}`, 20, yPosition); yPosition += lineSpacing;
+    doc.text(`Battery Risk Assessment: ${batteryRisk}`, 20, yPosition); yPosition += lineSpacing;
+    doc.text(`Battery Energy Storage Capacity: ${batteryEnergy} Wh`, 20, yPosition); yPosition += lineSpacing;
+    doc.text(`Self-Discharge Rate: ${selfDischarge} % per day`, 20, yPosition); yPosition += lineSpacing;
+    doc.text(`Carbon Footprint Reduction: ${carbonFootprint} %`, 20, yPosition); yPosition += lineSpacing;
+    doc.text(`Fast-Charging Suitability: ${fastCharging}`, 20, yPosition); yPosition += lineSpacing;
+
+    // 🚨 Add "Abnormal Inputs" section (only if abnormalities exist)
+    yPosition += 5;
+    doc.setFont("helvetica", "bold");
+    doc.text("Abnormal Inputs:", 20, yPosition);
+    yPosition += lineSpacing;
+    doc.setFont("helvetica", "normal");
+
+    // Wrap long text to fit the PDF
+    const splitAbnormalText = doc.splitTextToSize(abnormalText, 170);
+    doc.text(splitAbnormalText, 20, yPosition);
+    yPosition += splitAbnormalText.length * lineSpacing;
+
+
+    // 💾 Save the PDF report
+    doc.save('soh_report.pdf');
+});
+
+
+</script>
+
+
+</div>
+
+
+
+
+
+
+  <!-- Footer -->
+<div class="footer" id="contact">
+    
+    <p>
+        <span> Contact us:    &nbsp;</span>
+        <i class="fab fa-whatsapp"></i> +91 6300292479 |
+        <i class="fas fa-envelope"></i> jadasaireddy@gmail.com
+    </p>
+</div>
+
+<!-- Styles for Modern Look & Responsiveness -->
+<style>
+    .footer {
+        background-color: #28a745; /* Green background */
+        padding: 15px;
+        text-align: center;
+        font-family: Arial, sans-serif;
+        color: #fff; /* White text for contrast */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-top: 3px solid #1c7430; /* Darker green border for styling */
+    }
+
+    .footer p {
+        margin: 5px 0;
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+
+    .footer i {
+        margin-right: 5px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .footer {
+            padding: 12px;
+        }
+
+        .footer p {
+            font-size: 1rem;
+        }
+    }
+</style>
+
+
+<!-- Add Font Awesome CDN for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+<script>
+    function openImage() {
+    var modal = document.getElementById('imageModal');
+    var image = document.getElementById('batteryImage');
+    var modalImage = document.getElementById('modalImage');
+    modal.style.display = 'flex';
+    modalImage.src = image.src;
+}
+
+function closeImage() {
+    var modal = document.getElementById('imageModal');
+    modal.style.display = 'none';
+}
+
+function openImage1() {
+    var modal = document.getElementById('imageModal1');
+    var image = document.getElementById('batteryImage1');
+    var modalImage = document.getElementById('modalImage1');
+    modal.style.display = 'flex';
+    modalImage.src = image.src;
+}
+
+function closeImage1() {
+    var modal = document.getElementById('imageModal1');
+    modal.style.display = 'none';
+}
+// Close the modal when the Escape key is pressed
+document.addEventListener('keydown', function(event) {
+    if (event.key === "Escape") {
+        closeImage();
+    }
+});
+
+</script>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
